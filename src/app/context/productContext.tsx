@@ -2,6 +2,8 @@
 
 
 import React, { Children, createContext, useContext, useState } from 'react'
+import swal from 'sweetalert'
+import Swal from 'sweetalert2'
 
 
 type productType = {
@@ -79,8 +81,22 @@ export default function ProductContextProvider({ children }: { children: React.R
                 return item;
             });
             setCart(updatedCart);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Quantity Update Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
         } else {
-            setCart([...cart, {...product}])
+            setCart([...cart, { ...product }])
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product Add Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     }
 
