@@ -1,11 +1,18 @@
-import Image from 'next/image'
+"use client"
+
+import { ShoppingCart } from '@mui/icons-material'
 import React from 'react'
+import { useProductContext } from './context/productContext'
 
 export default function Header() {
-  return (
-    <div className='bg-[#322869] w-full'>
-        <h1 className='text-2xl text-white py-4 px-10'>Usman</h1>
-        <Image src={} alt='' height={} width={}/>
-    </div>
-  )
+
+    const {cart} = useProductContext()!;
+
+    return (
+        <div className='relative bg-[#322869] w-full px-10 flex justify-between items-center'>
+            <h1 className='text-2xl text-white py-4'>Usman</h1>
+            <ShoppingCart className='text-white' />
+            <p className='absolute top-2 right-[35px] text-black px-[6px] font-semibold rounded-full bg-green-400'>{cart.length}</p>
+        </div>
+    )
 }
