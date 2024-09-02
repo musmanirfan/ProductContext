@@ -64,21 +64,23 @@ export default function ProductContextProvider({ children }: { children: React.R
 
 
     const addToCart = (product: productType) => {
-        const existingProductIndex = cart.findIndex(item => item.id = product.id);
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
 
-        if (existingProductIndex) {
+        if (existingProductIndex !== -1) {
             const updatedCart = cart.map(item => {
                 if (item.id === product.id) {
-                    const uodatedItem = { ...item, quantity: item.quantity, totalPrice: (item.quantity + 1) * item.price }
-                    return updatedCart
+                    const uodatedItem = {
+                        ...item,
+                        quantity: item.quantity + 1,
+                        totalPrice: (item.quantity + 1) * item.price
+                    }
                 };
                 return item;
             });
             setCart(updatedCart);
         } else {
-            const newProduct = { ...product };
-            setCart([...cart, product])
+            setCart([...cart, {...product}])
         }
     }
 
