@@ -15,7 +15,7 @@ export default function Home() {
       <div className="text-center mb-8 pt-32 px-10">
         <h1 className="lg:text-6xl text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#4ADE80] via-[#8e8ce5] to-[#1a291f]">Our Exclusive Product Collection</h1>
         <p className="lg:text-xl text-gray-600 lg:mt-8 mt-2 mb-16 mx-auto lg:w-[80%]">
-          Discover our wide range of high-quality products carefully curated to meet your needs. Whether you're looking for the latest technology or everyday essentials, we have something for everyone.
+          {`Discover our wide range of high-quality products carefully curated to meet your needs. Whether you're looking for the latest technology or everyday essentials, we have something for everyone.`}
         </p>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:px-10 pb-16">
