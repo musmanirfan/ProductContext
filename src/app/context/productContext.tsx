@@ -23,6 +23,7 @@ type productContextType = {
     fetchProducts: (products: productType[]) => void;
     addToCart: (product: productType) => void;
     removeFromCart: (productId: string) => void;
+    cartCount: number;
 }
 
 
@@ -62,6 +63,7 @@ export default function ProductContextProvider({ children }: { children: React.R
     const [products, setProducts] = useState<productType[]>(productsData)
     const [cart, setCart] = useState<productType[]>([])
     const [showSideBar, setShowSideBar] = useState(false);
+    const [cartCount, setCartCount] = useState(0);
 
     const fetchProducts = (newProduct: productType[]) => {
         setProducts([...products, ...newProduct])
@@ -71,42 +73,36 @@ export default function ProductContextProvider({ children }: { children: React.R
     const addToCart = (product: productType) => {
         const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
-
         if (existingProductIndex !== -1) {
             const updatedCart = cart.map(item => {
                 if (item.id === product.id) {
-                    const uodatedItem = {
+                    return {
                         ...item,
                         quantity: item.quantity + 1,
-                        totalPrice: (item.quantity + 1) * item.price
-                    }
-                };
+                        totalPrice: (item.quantity + 1) * item.price,
+                    };
+                }
                 return item;
             });
             setCart(updatedCart);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Quantity Update Successfully",
-                showConfirmButton: false,
-                timer: 1500
-            });
         } else {
-            setCart([...cart, { ...product }])
+            setCart([...cart, { ...product }]);
+            setCartCount(cartCount + 1);
         }
+
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title:  existingProductIndex !== -1 ? "Quantity Updated Successfully" : "Product Added Successfully",
+            title: existingProductIndex !== -1 ? "Quantity Updated Successfully" : "Product Added Successfully",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
         });
-
-    }
+    };
 
     const removeFromCart = (productId: string) => {
         const updatedCart = cart.filter(product => product.id !== productId);
         setCart(updatedCart);
+        setCartCount(cartCount-1)
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -117,7 +113,7 @@ export default function ProductContextProvider({ children }: { children: React.R
     }
 
     return (
-        <ProductContext.Provider value={{ products, cart, fetchProducts, addToCart, removeFromCart }}>
+        <ProductContext.Provider value={{ products, cart, fetchProducts, addToCart, removeFromCart, cartCount }}>
             {children}
             <SideBar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
         </ProductContext.Provider>

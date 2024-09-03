@@ -45,7 +45,7 @@ export default function SideBar({ showSideBar, setShowSideBar }: SideBarProps) {
                                 leaveFrom="translate-x-0"
                                 leaveTo="translate-x-full"
                             >
-                                <Dialog.Panel className="pointer-events-auto w-[100%] max-w-full">
+                                <Dialog.Panel className="pointer-events-auto w-[30vw] max-w-full">
                                     <div className="flex h-full flex-col bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <div className="flex items-start justify-between">
@@ -70,17 +70,25 @@ export default function SideBar({ showSideBar, setShowSideBar }: SideBarProps) {
                                                     <p>Your cart is empty</p>
                                                 ) : (
                                                     cart.map((item) => (
-                                                        <div key={item.id} className="mb-4">
-                                                            <img
-                                                                src={item.image}
-                                                                alt={item.name}
-                                                                className="h-24 w-24 object-cover rounded-md"
-                                                            />
-                                                            <div className="flex flex-col">
-                                                                <h3 className="text-lg font-semibold">{item.name}</h3>
-                                                                <p>Quantity: {item.quantity}</p>
-                                                                <p>Total: ${item.totalPrice.toFixed(2)}</p>
-                                                                <Delete onClick={() => removeFromCart(item.id)} className="cursor-pointer" />
+                                                        <div key={item.id} className="mb-4 flex gap-3">
+                                                            <div className="w-[30%]">
+                                                                <img
+                                                                    src={item.image}
+                                                                    alt={item.name}
+                                                                    className="h-24 w-fit object-cover rounded-md"
+                                                                />
+                                                            </div>
+                                                            <div className="flex !justify-between w-[70%]">
+                                                                <div>
+                                                                    <h3 className="text-sm">Name: {item.name}</h3>
+                                                                    <h3 className="text-sm">Price: ${item.price}</h3>
+                                                                    <button onClick={() => removeFromCart(item.id)} className="text-red-600 cursor-pointer" >Remove</button>
+                                                                </div>
+                                                                <div className="">
+                                                                    <p className="whitespace-nowrap text-right text-sm">Qty: {item.quantity}</p>
+                                                                    <p className="whitespace-nowrap text-right text-sm">Total: ${item.totalPrice.toFixed(2)}</p>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     ))

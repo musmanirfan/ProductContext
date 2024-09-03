@@ -8,8 +8,8 @@ import SideBar from './sidebar'
 export default function Header() {
 
     const [showSideBar, setShowSideBar] = useState(false)
-    const { cart } = useProductContext()!;
-    const totalQuantity = cart.reduce((acc, product) => acc + product.quantity, 0)
+    const { cartCount } = useProductContext()!;
+    // const totalQuantity = cartCount.reduce((acc, product) => acc + product.quantity, 0)
 
 
     const toggleSidebar = () => {
@@ -23,7 +23,7 @@ export default function Header() {
             </div>
             <div onClick={toggleSidebar} className='cursor-pointer'>
                 <ShoppingCart className='text-white' />
-                <p className='absolute top-2 right-[35px] text-black px-[6px] font-semibold rounded-full bg-green-400'>{totalQuantity}</p>
+                <p className='absolute top-2 right-[35px] text-black px-[6px] font-semibold rounded-full bg-green-400'>{cartCount}</p>
             </div>
             <SideBar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
         </div>
