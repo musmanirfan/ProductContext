@@ -21,6 +21,7 @@ type productContextType = {
     cart: productType[];
     fetchProducts: (products: productType[]) => void;
     addToCart: (product: productType) => void;
+    removeFromCart: (productId: string) => void;
 }
 
 
@@ -100,8 +101,20 @@ export default function ProductContextProvider({ children }: { children: React.R
         }
     }
 
+    const removeFromCart = (productId: string) => {
+        const updatedCart = cart.filter(product => product.id !== productId);
+        setCart(updatedCart);
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product Removed Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
     return (
-        <ProductContext.Provider value={{ products, cart, fetchProducts, addToCart }}>
+        <ProductContext.Provider value={{ products, cart, fetchProducts, addToCart, removeFromCart }}>
             {children}
         </ProductContext.Provider>
     )
