@@ -45,7 +45,7 @@ export default function SideBar({ showSideBar, setShowSideBar }: SideBarProps) {
                                 leaveFrom="translate-x-0"
                                 leaveTo="translate-x-full"
                             >
-                                <Dialog.Panel className="pointer-events-auto w-[30vw] max-w-full">
+                                <Dialog.Panel className="pointer-events-auto lg:w-[30vw] max-w-full">
                                     <div className="flex h-full flex-col bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <div className="flex items-start justify-between">
