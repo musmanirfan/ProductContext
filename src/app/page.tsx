@@ -21,7 +21,7 @@ export default function Home() {
               <h1 className="text-xl pl-5"> {product?.category}</h1>
               <h1 className="text-xl pl-5 pb-2">{product?.price}</h1>
               <button className="w-full border border-t-black hover:bg-black hover:text-white transition-all py-2 duration-300" onClick={() => addToCart(product)}>Add to Cart</button>
-              <Delete onClick={() => removeFromCart(product.id)} className="cursor-pointer" />
+              
             </div>
           ))
         }

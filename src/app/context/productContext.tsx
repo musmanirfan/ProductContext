@@ -4,6 +4,7 @@
 import React, { Children, createContext, useContext, useState } from 'react'
 import swal from 'sweetalert'
 import Swal from 'sweetalert2'
+import SideBar from '../sidebar'
 
 
 type productType = {
@@ -60,6 +61,7 @@ const ProductContext = createContext<null | productContextType>(null)
 export default function ProductContextProvider({ children }: { children: React.ReactNode }) {
     const [products, setProducts] = useState<productType[]>(productsData)
     const [cart, setCart] = useState<productType[]>([])
+    const [showSideBar, setShowSideBar] = useState(false);
 
     const fetchProducts = (newProduct: productType[]) => {
         setProducts([...products, ...newProduct])
@@ -91,14 +93,15 @@ export default function ProductContextProvider({ children }: { children: React.R
             });
         } else {
             setCart([...cart, { ...product }])
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Product Add Successfully",
-                showConfirmButton: false,
-                timer: 1500
-            });
         }
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title:  existingProductIndex !== -1 ? "Quantity Updated Successfully" : "Product Added Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+
     }
 
     const removeFromCart = (productId: string) => {
@@ -116,6 +119,7 @@ export default function ProductContextProvider({ children }: { children: React.R
     return (
         <ProductContext.Provider value={{ products, cart, fetchProducts, addToCart, removeFromCart }}>
             {children}
+            <SideBar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
         </ProductContext.Provider>
     )
 }
