@@ -12,7 +12,7 @@ type SideBarProps = {
 };
 
 export default function SideBar({ showSideBar, setShowSideBar }: SideBarProps) {
-    const { cart, removeFromCart } = useProductContext()!; // Get cart items from context
+    const { cart, removeFromCart } = useProductContext()!;
 
     const handleClose = () => {
         setShowSideBar(false);

@@ -8,7 +8,7 @@ import Footer from "./footer";
 
 
 export default function Home() {
-  const { products, fetchProducts, addToCart, removeFromCart } = useProductContext()!;
+  const { products, addToCart} = useProductContext()!;
   return (
     <>
       <Header />
@@ -21,7 +21,6 @@ export default function Home() {
               <h1 className="text-xl pb-2">${product?.price}</h1>
               <h1 className="text-md">Catogery: {product?.category}</h1>
               <button className="w-full border border-black rounded-full hover:bg-black hover:text-white transition-all py-2 duration-300" onClick={() => addToCart(product)}>Add to Cart</button>
-              
             </div>
           ))
         }

@@ -9,7 +9,6 @@ export default function Header() {
 
     const [showSideBar, setShowSideBar] = useState(false)
     const { cartCount } = useProductContext()!;
-    // const totalQuantity = cartCount.reduce((acc, product) => acc + product.quantity, 0)
 
 
     const toggleSidebar = () => {
