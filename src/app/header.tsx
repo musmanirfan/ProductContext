@@ -17,7 +17,7 @@ export default function Header() {
     }
 
     return (
-        <div className='relative bg-[#322869] w-full px-10 flex justify-between items-center'>
+        <div className='bg-[#322869] w-full px-10 flex justify-between items-center fixed'>
             <div>
                 <h1 className='text-2xl text-white py-4'>Usman</h1>
             </div>
