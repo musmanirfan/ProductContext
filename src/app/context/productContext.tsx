@@ -169,7 +169,7 @@ export default function ProductContextProvider({ children }: { children: React.R
         }
 
         Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: existingProductIndex !== -1 ? "Quantity Updated Successfully" : "Product Added Successfully",
             showConfirmButton: false,
@@ -182,7 +182,7 @@ export default function ProductContextProvider({ children }: { children: React.R
         setCart(updatedCart);
         setCartCount(cartCount - 1)
         Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Product Removed Successfully",
             showConfirmButton: false,
